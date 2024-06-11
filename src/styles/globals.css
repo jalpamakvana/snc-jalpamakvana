@@ -26,6 +26,29 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.main-content{
+  background-image: url('../../public/assets/images/5153829.jpg');;
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content:center;
+  align-Items: center;
+  overflow: auto;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.class-log{
+  font-size: 20px;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

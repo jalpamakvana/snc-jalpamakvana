@@ -1,6 +1,14 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { AppProvider } from "../context/AppProvider";
+import "@/styles/globals.css";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
+import "../styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+  return (
+    <AppProvider>
+      <Component {...pageProps} />
+    </AppProvider>
+  );
+};
+export default App;
