@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 import { User } from "../utils/common/person";
+import { useLogContext } from "../context/LoggingContext";
 
-const usePersonDetailsLogger = (
-  user: User,
-  enableLogs: boolean,
-  currentTime: string,
-) => {
+const usePersonDetailsLogger = (user: User | null, currentTime: string) => {
+  const { enableLogs } = useLogContext();
   useEffect(() => {
     if (enableLogs && user) {
       console.log("Person details:", user);

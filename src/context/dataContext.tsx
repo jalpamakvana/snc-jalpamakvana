@@ -1,7 +1,5 @@
 import { User } from "../utils/common/person";
 import React, {
-  FunctionComponent,
-  PropsWithChildren,
   createContext,
   useContext,
   ReactNode,
@@ -16,7 +14,14 @@ type DataContextType = {
   fetchData: (person: string) => void;
 };
 
-const DataContext = createContext<DataContextType | undefined>(undefined);
+const initialContext = {
+  loading: false,
+  result: null,
+  error: null,
+  fetchData: () => {},
+};
+
+const DataContext = createContext<DataContextType>(initialContext);
 
 export const useDataContext = () => {
   const context = useContext(DataContext);
@@ -45,10 +50,10 @@ const fetchData = async (person: string) => {
   }
 };
 
-export const DataContextProvider: FunctionComponent<
-  PropsWithChildren<MyContextProviderProps>
-> = ({ children }) => {
-  const [loading, setLoading] = useState<boolean>(false);
+export const DataContextProvider: React.FC<MyContextProviderProps> = ({
+  children,
+}) => {
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<User | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,7 +74,7 @@ export const DataContextProvider: FunctionComponent<
     [setLoading, setResult, setError],
   );
 
-  const value: DataContextType = {
+  const value = {
     loading,
     result,
     error,
